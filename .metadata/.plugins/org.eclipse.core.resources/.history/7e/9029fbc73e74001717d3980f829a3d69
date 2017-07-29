@@ -50,7 +50,7 @@ public class School {
 
 	
 	public School(String _name , ArrayList<String> _houseNames , ArrayList<String> _courseNames , ArrayList<Integer> _years , Vector<String> _studentNames , Vector<String> _professorNames){
-		name = _name;
+		name = name;
 		houseNames = _houseNames;
 		courseNames = _courseNames;
 		years = _years;
