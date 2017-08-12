@@ -29,6 +29,9 @@ public class Student extends Person {
 	public Student(String _name, Vector <Course> _courses , Vector <FinishedCourse> _reportCard){
 		this(_name , "" , "" , "" ,null ,_courses , _reportCard);
 	}
+	public Student(String _name){
+		this(_name , "" , "" , "" ,null ,null , null);
+	}
 	public Student(){
 		this("" , "" , "" , "" ,null , null , null);
 	}
