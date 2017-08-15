@@ -1,44 +1,101 @@
 package entities;
 
-import java.util.*;
-
 public class FinishedCourse extends Course{
-	private Grades grade; //Grade received 
-	private Boolean passed; //Whether or not the student passed the course
+	private Student _student;	//The specific student taking this course
+	private Grades _grade;		//The grade achieved by the student
+	private boolean _passed;	//Whether or not the student passed
 	
-	//getters and setters
+	/*			CONSTRUCTORS			*/
 	
-	public Grades getGrade() {
-		return grade;
-	}
-	public void setGrade(Grades _grade) {
-		grade = _grade;
-	}
-	public Boolean getPassed() {
-		return passed;
-	}
-	public void setPassed(Boolean _passed) {
-		passed = _passed;
-	}
-	
-	
-	//constructor
-	public FinishedCourse(String _name , String _professorName ,char _minGrade , int _year , Vector<String> _studentNames , Grades _grade , Boolean _passed)
+	public FinishedCourse(String name, Grades minGrade, Professor professor, int year, Student student, 
+			Grades grade, boolean passed)
 	{
-		super(_name , _professorName , _minGrade , _year , _studentNames);
-		grade = _grade;
-		passed = _passed;
+		_name = name;
+		_minGrade = minGrade;
+		_professor = professor;
+		_year = year;
+		_student = student;
+		_grade = grade;
+		_passed = passed;
+
 	}
-	public FinishedCourse(String _name , String _professorName ,char _minGrade , int _year, Grades _grade , Boolean _passed){
-		this(_name , _professorName , _minGrade , _year , null , _grade , _passed);
+	
+	public FinishedCourse()
+	{
+		this("", Grades.T, null, 0, null, Grades.T, false);
 	}
-	public FinishedCourse(String _name, Grades _grade , Boolean _passed){
-		this(_name , "" , '0' , 0 , null , _grade , _passed);
+	
+	/*				GETTERS				*/
+
+	
+	public Student getStudent()
+	{
+		return _student;
 	}
-	public FinishedCourse(Grades _grade , Boolean _passed){
-		this("" , "" , '0' , 0 , null , _grade , _passed);
+	public Grades getGrade()
+	{
+		return _grade;
 	}
-	public FinishedCourse(){
-		this("" , "" , '0' , 0 , null , Grades.T , false);
+	public boolean getPassed()
+	{
+		return _passed;
+	}
+	
+	/*				SETTERS				*/
+	
+	
+	public void setStident(Student student)
+	{
+		_student = student;
+	}
+	public void setGrade(Grades grade)
+	{
+		_grade = grade;
+	}
+	public void setPassed(boolean passed)
+	{
+		_passed = passed;
+	}
+	
+	/*			HELPER METHODS			*/
+	
+	public void assurePassed(Grades grade)
+	{
+		switch(grade)
+		{
+		case O : /* Outstanding */
+			_passed = true;
+			break;
+
+		case E : /* Exceeds Expectations */
+			_passed = true;
+			break;			
+
+		case A : /* Acceptable */
+			_passed = true;
+			break;
+		
+		case P : /* Poor */
+			_passed = false;
+			break;
+			
+		case T : /* Troll */
+			_passed = false;
+			break;
+		default:
+			break;
+		}
+	}
+	public String toString()
+	{
+		String temp = "";
+		
+		temp += "Student	: " + _student.getName() + '\n' + 
+				"Course		: " + _name + '\n' +
+				"Grade		: " + _grade + '\n' +
+				"***********************************";
+				
+		return temp;
 	}
 }
+

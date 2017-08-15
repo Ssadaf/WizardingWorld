@@ -3,75 +3,111 @@ package entities;
 import java.util.*;
 
 public class House {
-	private String name; //House name
-	private School school; //the school that has this house
-	private Vector<Student> students; //List of students in the house
-	private Professor headTeacher; //the house’s head teacher
-	private ArrayList<String> qualities; //List of qualities that are required to be in the house
-	private Map<Integer,Student> prefects; //the list of prefects of the house per year
+	private String _name;
+	private School _school;
+	private Vector<Student> _students;
+	private Professor _headTeacher;
+	private ArrayList<String> _qualities;
+	private Map<Integer, Student> _prefects;
 	
-	//setters and getters
-	public String getName() {
-		return name;
+	/*			CONSTRUCTORS			*/
+	
+	public House(String name, School school, Vector<Student> students, Professor headTeacher, 
+			ArrayList<String> qualities, Map<Integer, Student> prefects)
+	{
+		
+		_name = name;
+		_school = school;
+		_students = students;
+		_headTeacher = headTeacher;
+		_qualities = qualities;
+		_prefects = prefects;
+		
 	}
-	public void setName(String _name) {
-		name = _name;
+	
+	public House(String name, School school)
+	{
+		this(name, school, new Vector<Student>(), null, new ArrayList<String>(), 
+				new TreeMap<Integer, Student>());
 	}
-	public School getSchool() {
-		return school;
+	
+	public House()
+	{
+		this("", null, new Vector<Student>(), null, new ArrayList<String>(), 
+				new TreeMap<Integer, Student>());
 	}
-	public void setSchool(School _school) {
-		school = _school;
+	
+	
+	/*				GETTERS				*/
+	
+	public String getName()
+	{
+		return _name;
 	}
-	public Vector<Student> getStudents() {
-		return students;
+	public School getSchool()
+	{
+		return _school;
 	}
-	public void setStudents(Vector<Student> _students) {
-		students = _students;
+	public Vector<Student> getStudents()
+	{
+		return _students;
 	}
-	public Professor getHeadTeacher() {
-		return headTeacher;
+	public Professor getHeadTeacher()
+	{
+		return _headTeacher;
 	}
-	public void setHeadTeacher(Professor _headTeacher) {
-		headTeacher = _headTeacher;
+	public ArrayList<String> getQualities()
+	{
+		return _qualities;
 	}
-	public ArrayList<String> getQualities() {
-		return qualities;
+	public Map<Integer, Student> getPrefects()
+	{
+		return _prefects;
 	}
-	public void setQualities(ArrayList<String> _qualities) {
-		qualities = _qualities;
+	
+	/*				SETTERS				*/
+	
+	public void setName(String name)
+	{
+		_name = name;
 	}
-	public Map<Integer, Student> getPrefects() {
-		return prefects;
+	public void setSchool(School school)
+	{
+		_school = school;
 	}
-	public void setPrefects(Map<Integer, Student> _prefects) {
-		prefects = prefects;
+	public void setStudents(Vector<Student> students)
+	{
+		_students = students;
+	}
+	public void setHeadTeacher(Professor headTeacher)
+	{
+		_headTeacher = headTeacher;
+	}
+	public void setQualities(ArrayList<String> qualities)
+	{
+		_qualities = qualities;
+	}
+	public void setPrefects(Map<Integer, Student> prefects)
+	{
+		_prefects = prefects;
+	}
+	
+	/*			HELPER METHODS			*/
+	
+	public String toString()
+	{
+		String temp = "";
+		
+		temp += "Name		: " + _name + '\n' +
+				"Prefects	: " + '\n';
+		
+		for(int i=0; i<_prefects.size(); i++)
+		{
+			temp += _prefects.entrySet().toString();
+		}
+				
+		return temp;
 	}
 
-	//constructor
-	public House(String _name , School _school , Vector<Student> _students , Professor _headTeacher , ArrayList<String> _qualities , Map<Integer,Student> _prefects)
-	{
-		name = _name;
-		school = _school;
-		students = _students;
-		headTeacher = _headTeacher;
-		qualities = _qualities;
-		prefects = _prefects;
-	}
-	public House(String _name , School _school , Vector<Student> _students , Professor _headTeacher)
-	{
-		this(_name , _school , _students , _headTeacher , null , null);
-	}
-	public House(String _name , School _school)
-	{
-		this(_name , _school , null , null , null , null);
-	}
-	public House(String _name )
-	{
-		this(_name , null , null , null , null , null);
-	}
-	public House( )
-	{
-		this("" , null , null , null , null , null);
-	}
+
 }

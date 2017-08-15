@@ -1,10 +1,10 @@
 package entities;
 
 public enum BloodStatus {
-	MUGGLE , 
-	PURE_BLOOD , 
-	HALF_BLOOD , 
-	MUGGLE_BORN , 
-	SQUIBB ,
-	HALF_BREED
+	Muggle,
+	Muggle_born,
+	Half_blood,
+	Pure_blood,
+	Squib,
+	Half_breed;
 }

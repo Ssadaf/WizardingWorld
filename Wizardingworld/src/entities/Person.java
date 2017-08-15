@@ -1,58 +1,73 @@
 package entities;
 
-import java.util.*;
-
 public class Person {
-	private String name;
-	private String houseName;
-	private String bloodStatus;
-	private String school;
-	private Date birthday;
-
-	public String getName(){
-		return name;
+	protected String _name;
+	protected House _house;
+	protected BloodStatus _bloodStatus;
+	protected School _school;
+	protected String _birthday;
+	
+	/*			CONSTRUCTORS			*/
+	public Person(String name, House house, BloodStatus bloodStatus, School school, String birthday)
+	{
+		_name = name;
+		_house = house;
+		_bloodStatus = bloodStatus;
+		_school = school;
+		_birthday = birthday;
 	}
-	public String getHouseName(){
-		return houseName;
+	public Person(String name)
+	{
+		this(name, null, BloodStatus.Muggle, null, "");
 	}
-	public  String getBloodStatus(){
-		return bloodStatus;
-	}
-	public  String getSchool(){
-		return school;
-	}
-	public Date getBirthday(){
-		return birthday;
+	public Person()
+	{
+		this("", null, BloodStatus.Muggle, null, "");
 	}
 	
-	public void setName(String _name){
-		name = _name;
+	/*				GETTERS				*/
+	public String getName()
+	{
+		return _name;
 	}
-	public void setHouseName(String _houseName){
-		houseName = _houseName;
+	public House getHouse()
+	{
+		return _house;
 	}
-	public  void setBloodStatus(String _bloodStatus){
-		bloodStatus = _bloodStatus;
+	public BloodStatus getBloodStatus()
+	{
+		return _bloodStatus;
 	}
-	public  void setSchool(String _school){
-		school = _school;
+	public School getSchool()
+	{
+		return _school;
 	}
-	public void setBirthday(Date _birthday){
-		birthday = _birthday;
+	public String getBirthday()
+	{
+		return _birthday;
 	}
 	
-	public Person(String _name , String _houseName , String _bloodStatus , String _school , Date _birthday){
-		name = _name;
-		houseName = _houseName;
-		bloodStatus = _bloodStatus;
-		school = _school;
-		birthday = _birthday;
+	/*				SETTERS				*/
+	
+	public void setName(String name)
+	{
+		_name = name;
 	}
-	public Person(String _name){
-		this(_name , "" , "" , "" ,null);
+	public void setHouse(House house)
+	{
+		_house = house;
 	}
-	public Person(){
-		this("" , "" , "" , "" ,null);
+	public void setBloodStatus(BloodStatus bloodStatus)
+	{
+		_bloodStatus = bloodStatus;
+	}
+	public void setSchool(School school)
+	{
+		_school = school;
+	}
+	public void setBirthday(String birthday)
+	{
+		_birthday = birthday;
 	}
 	
 }

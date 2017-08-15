@@ -1,38 +1,48 @@
 package entities;
 
-import java.util.*;
+import java.util.Vector;
 
-public class Student extends Person {
-	private Vector <Course> courses;
-	private Vector <FinishedCourse> reportCard;
+public class Student extends Person{
+	private Vector<Course> _courses;
+	private Vector<FinishedCourse> _reportCard;
 	
-	//setters and getters
-	public Vector<Course> getCourses() {
-		return courses;
+	/*			CONSTRUCTORS			*/
+	public Student(String name, House house, BloodStatus bloodStatus, School school, String birthday,
+			Vector<Course> courses, Vector<FinishedCourse> reportCard)
+	{
+		_name = name;
+		_house = house;
+		_bloodStatus = bloodStatus;
+		_school = school;
+		_birthday = birthday;
+		_courses = courses;
+		_reportCard = reportCard;
 	}
-	public void setCourses(Vector<Course> _courses) {
-		courses = _courses;
-	}
-	public Vector<FinishedCourse> getReportCard() {
-		return reportCard;
-	}
-	public void setReportCard(Vector<FinishedCourse> _reportCard) {
-		reportCard = _reportCard;
+
+	public Student(String name) {
+		this(name, null, BloodStatus.Muggle, null, "00.00.0000",
+				new Vector<Course>(), new Vector<FinishedCourse>());
+
 	}
 	
-	//constructor
-	public Student(String _name , String _houseName , String _bloodStatus , String _school , Date _birthday , Vector <Course> _courses , Vector <FinishedCourse> _reportCard){
-		super(_name ,_houseName , _bloodStatus , _school , _birthday);
-		courses = _courses;
-		reportCard = _reportCard;
+	/*				GETTERS				*/
+	public Vector<Course> getCourses()
+	{
+		return _courses;
 	}
-	public Student(String _name, Vector <Course> _courses , Vector <FinishedCourse> _reportCard){
-		this(_name , "" , "" , "" ,null ,_courses , _reportCard);
+	public Vector<FinishedCourse> getReportCard()
+	{
+		return _reportCard;
 	}
-	public Student(String _name){
-		this(_name , "" , "" , "" ,null ,null , null);
+
+	/*				SETTERS				*/
+	public void setCourses(Vector<Course> courses)
+	{
+		_courses = courses;
 	}
-	public Student(){
-		this("" , "" , "" , "" ,null , null , null);
+	public void setReportCard(Vector<FinishedCourse> reportCard)
+	{
+		_reportCard = reportCard;
 	}
+
 }

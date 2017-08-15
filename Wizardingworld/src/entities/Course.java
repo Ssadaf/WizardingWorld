@@ -1,59 +1,96 @@
 package entities;
 
-import java.util.*;
+import java.util.Vector;
 
 public class Course {
-	private String name;
-	private String professorName;
-	private char minGrade;
-	private int year;
-	private Vector<String> studentNames;	
+	protected String _name;				/* The course's name */
+	protected Grades _minGrade;			/* The minimum grade required after taking the OWLs to continue with the course */
+	protected Professor _professor;		/* The professor teaching this course at the year indicated */
+	protected int _year;					/* The year during which this course is offered by the indicated professor */
+	private Vector<Student> _students;	/* List of students enrolled in the class during the indicated year */
 	
-	public String getName(){
-		return name;
+	/*			CONSTRUCTORS			*/
+	public Course(String name, Grades grade, Professor professor, int year, Vector<Student> students)
+	{
+		_name = name;
+		_minGrade = grade;
+		_professor = professor;
+		_year = year;
+		_students = students;
 	}
-	public String getProfessorName(){
-		return professorName; 
+	public Course(String name, Professor professor, int year)
+	{
+		this(name, Grades.A, professor, year, new Vector<Student>());		
 	}
-	public char getMinGrade(){
-		return minGrade;
-	}
-	public int getYear(){
-		return year;
-	}
-	public Vector<String> getStudentNames(){
-		return studentNames;
-	}
-	
-	public void setName(String _name){
-		name = _name;
-	}
-	public void setProfessorName(String _professorName){
-		professorName = _professorName; 
-	}
-	public void setMinGrade(char _minGrade){
-		minGrade = _minGrade;
-	}
-	public void setYear(int _year){
-		year = _year;
-	}
-	public void setStudentNames(Vector<String> _studentNames){
-		studentNames = _studentNames;
+	public Course()
+	{
+		this("", Grades.T, null, 0, new Vector<Student>());
 	}
 	
-	public Course(String _name , String _professorName ,char _minGrade , int _year , Vector<String> _studentNames){
-		name = _name;
-		professorName = _professorName;
-		minGrade = _minGrade;
-		studentNames = _studentNames;
+	/*				GETTERS				*/
+	
+	public String getName()
+	{
+		return _name;
 	}
-	public Course(String _name , String _professorName ,char _minGrade , int _year){
-		this(_name , _professorName , _minGrade , _year , null);
+	public Grades getMinGrade()
+	{
+		return _minGrade;
 	}
-	public Course(String _name){
-		this(_name , "" , '0' , 0 , null);
+	public Professor getProfessor()
+	{
+		return _professor;
 	}
-	public Course(){
-		this("" , "" , '0' , 0 , null);
+	public int getYear()
+	{
+		return _year;
+	}
+	public Vector<Student> getStudents()
+	{
+		return _students;
+	}
+	
+	/*				SETTERS				*/
+	
+	public void setName(String name)
+	{
+		_name = name;
+	}
+	public void setMinGrade(Grades grade)
+	{
+		_minGrade = grade;
+	}
+	public void setProfessor(Professor professor)
+	{
+		_professor = professor;
+	}
+	public void setYear(int year)
+	{
+		_year = year;
+	}
+	public void setStudents(Vector<Student> students)
+	{
+		_students = students;
+	}
+	
+	/*			HELPER METHODS			*/
+
+	
+	public void addStudent(Student student)
+	{
+		_students.addElement(student);
+	}
+
+	public String toString()
+	{
+		String temp = "";
+		
+		temp += "Name			: " + _name + '\n' +
+				"Minimum Grade	: " + _minGrade + '\n' +
+				"Professor		: " + _professor.getName() + '\n' +
+				"Year			: " + _year + '\n' + 
+				"*******************************************";
+						
+		return temp;
 	}
 }
