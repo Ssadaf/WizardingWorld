@@ -1,4 +1,5 @@
 import entityTests.*;
+import serviceTests.*;
 
 public class Main {
 	
@@ -49,6 +50,14 @@ public class Main {
 				);
 		ptest.runTests();
 		//////////*~~~~~ END OF PERSON TESTS		
+	
+/******************          	COURSE SERVICE TEST **********************************/
+		
+		//creating an instance of COURSE SERVICE test
+		CourseServiceTest courseServiceTest = new CourseServiceTest();
+		System.out.println("**************************** COURSE SERVICE TEST ***************************************");
+		courseServiceTest.runTests();
+		/////////end of course service test
 		
 	}
 	
