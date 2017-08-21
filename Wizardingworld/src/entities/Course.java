@@ -22,6 +22,10 @@ public class Course {
 	{
 		this(name, Grades.A, professor, year, new Vector<Student>());		
 	}
+	public Course(String name)
+	{
+		this(name, Grades.A, null , 0, new Vector<Student>());		
+	}
 	public Course()
 	{
 		this("", Grades.T, null, 0, new Vector<Student>());

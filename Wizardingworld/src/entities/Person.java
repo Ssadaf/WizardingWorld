@@ -70,4 +70,17 @@ public class Person {
 		_birthday = birthday;
 	}
 	
+	//methods
+	public String toString()
+	{
+		String s="";
+		s += "name: " + _name + "\n";
+		s +="house: " + _house.getName() +"\n";
+		s +="bloodStatus: "+_bloodStatus +"\n";
+		s +="school: "+_school.getName() +"\n";
+		s +="birthday: "+_birthday +"\n";
+		s +="**************************************************";
+		return s;
+	}
+	
 }

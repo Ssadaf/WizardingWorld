@@ -45,4 +45,22 @@ public class Professor extends Person{
 	{
 		_notes = notes;
 	}
+	
+	//methods
+	public String toString()
+	{
+		String s="";
+		s += "name: " + _name + "\n";
+		s +="house: " + _house.getName() +"\n";
+		s +="bloodStatus: "+_bloodStatus +"\n";
+		s +="school: "+_school.getName() +"\n";
+		s +="birthday: "+_birthday +"\ncourses:";
+//		for(int i=0; i<_courses.size(); i++)
+//			s += _courses.entrySet().toString();
+		s +="notes: "+_notes;
+		s +="\n **************************************************";
+		return s;
+	}
+
+
 }

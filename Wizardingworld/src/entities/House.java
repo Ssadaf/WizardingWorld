@@ -25,9 +25,20 @@ public class House {
 		
 	}
 	
+	public House(String name, School school, Vector<Student> students)
+	{
+		this(name , school ,students , null, new ArrayList<String>(), new TreeMap<Integer, Student>());
+	}
+
+	
 	public House(String name, School school)
 	{
 		this(name, school, new Vector<Student>(), null, new ArrayList<String>(), 
+				new TreeMap<Integer, Student>());
+	}
+	public House(String name)
+	{
+		this(name, null , new Vector<Student>(), null, new ArrayList<String>(), 
 				new TreeMap<Integer, Student>());
 	}
 	
@@ -98,14 +109,13 @@ public class House {
 	{
 		String temp = "";
 		
-		temp += "Name		: " + _name + '\n' +
-				"Prefects	: " + '\n';
+		temp += "Name		: " + _name + '\n' +"school : "+_school.getName() +"\n" +"students : ";
 		
-		for(int i=0; i<_prefects.size(); i++)
+		for(int i=0; i<_students.size(); i++)
 		{
-			temp += _prefects.entrySet().toString();
+			temp += _students.get(i).getName();
 		}
-				
+		temp +="\n ***********************************";
 		return temp;
 	}
 

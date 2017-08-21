@@ -37,6 +37,11 @@ public class School {
 		this(name, 0, housed, new ArrayList<House>(), 
 				new Vector<Student>(), new Vector<Professor>(), new ArrayList<Course>(), location);
 	}
+	public School(String name)
+	{
+		this(name, 0, false , new ArrayList<House>(), 
+				new Vector<Student>(), new Vector<Professor>(), new ArrayList<Course>(), "");
+	}
 	
 	public void setName(String name)
 	{
@@ -101,6 +106,28 @@ public class School {
 	public String getLocation()
 	{
 		return _location;
+	}
+	public String toString()
+	{
+		String s = "";
+		s += "name : " + _name + "\n" +
+			"numOfStudent : " + Integer.toString(_numOfStudents) + "\n" +	
+			"housed : " + _housed + "\n" +
+			"houses : ";
+		for(int i=0 ; i<_houses.size();++i)
+			s += _houses.get(i).getName();
+		s += "\n" +"students : ";
+		for(int i=0 ; i<_students.size();++i)
+			s += _students.get(i).getName();
+		s += "\n" + "professors : ";
+		for(int i=0 ; i<_professors.size();++i)
+			s += _professors.get(i).getName();
+		s += "\n" + "courses : ";
+		for(int i=0 ; i<_courses.size();++i)
+			s += _courses.get(i).getName();
+		s += "\n" + "location : "+ _location+"\n" +"********************************************************";			
+		
+		return s;
 	}
 
 }

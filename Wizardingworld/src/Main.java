@@ -1,5 +1,6 @@
 import entityTests.*;
 import serviceTests.*;
+import services.*;
 
 public class Main {
 	
@@ -65,14 +66,42 @@ public class Main {
 				studentServiceTest.runTests();
 				/////////end of student service test
 /******************          	SCHOOL SERVICE TEST **********************************/
-				//creating an instance of SCHOOL SERVICE test
-						SchoolServiceTest schoolServiceTest = new SchoolServiceTest();
-						System.out.println("**************************** SCHOOL SERVICE TEST ***************************************");
-						schoolServiceTest.runTests();
-						/////////end of school service test
+		//creating an instance of SCHOOL SERVICE test
+				SchoolServiceTest schoolServiceTest = new SchoolServiceTest();
+				System.out.println("**************************** SCHOOL SERVICE TEST ***************************************");
+				//schoolServiceTest.runTests();
+				
+				
+				System.out.println("**************************** SCHOOL SERVICE  ***************************************");
+				SchoolService schoolService = new SchoolService();
+				schoolService.getData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/SchoolDB.txt");
+				schoolService.setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/Schooltest.txt");
+						
+				System.out.println("**************************** COURSE SERVICE  ***************************************");
+				CourseService courseService = new CourseService();
+				courseService.getData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/CourseDB.txt");
+				courseService.setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/Coursetest.txt");
 
-	
-	}
+				System.out.println("**************************** STUDENT SERVICE  ***************************************");
+				StudentService studentService = new StudentService();
+				studentService.getData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/StudentDB.txt");
+				studentService.setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/StudentTest.txt");
+				
+				System.out.println("**************************** HOUSE SERVICE  ***************************************");
+				HouseService houseService = new HouseService();
+				houseService.getData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/HouseDB.txt");
+				houseService.setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/Housetest.txt");
+				
+				System.out.println("**************************** PROFESSOR SERVICE  ***************************************");
+				ProfessorService professorService = new ProfessorService();
+				professorService.getData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/ProfessorDB.txt");
+				professorService.setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/ProfessorTest.txt");
+				
+				System.out.println("**************************** PERSON SERVICE  ***************************************");
+				PersonService personService = new PersonService();
+				personService.getData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/PersonDB.txt");
+				personService.setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/Persontest.txt");
+			}
 	
 	
 
