@@ -238,14 +238,14 @@ public class ProfessorService {
 		public void createNewProfessor(Professor professor)
 		{
 			allProfessors.add(professor);
-			setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/PersonDB.txt");
+			setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/ProfessorDB.txt");
 		}
 		
 		public void deleteProfessor(Professor professor)
 		{
 			if(!allProfessors.remove(professor))
 				System.out.println("this professor does not exist");
-			setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/PersonDB.txt");
+			setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/ProfessorDB.txt");
 		}
 		
 		public void editProfessor(String name , Professor newprofessor) throws NotFoundException

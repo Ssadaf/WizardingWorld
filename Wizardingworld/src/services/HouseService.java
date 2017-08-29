@@ -182,14 +182,14 @@ public class HouseService {
 	public void createNewHouse(House house)
 	{
 		allHouses.add(house);
-		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/PersonDB.txt");
+		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/HouseDB.txt");
 	}
 	
 	public void deleteHouse(House house)
 	{
 		if(!allHouses.remove(house))
 			System.out.println("this house does not exist");
-		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/PersonDB.txt");
+		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/HouseDB.txt");
 	}
 	
 	public void editHouse(String name , House newhouse) throws NotFoundException
