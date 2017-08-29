@@ -206,4 +206,53 @@ public class ProfessorService {
 		}
 	
 
+		public void showAllProfessors()
+		{
+			for(int i=0 ; i<allProfessors.size() ; ++i)
+			{
+				String s =allProfessors.get(i).toString();
+				System.out.println(s);
+			}
+			
+		}
+		
+		public Professor searchByName(String name) throws NotFoundException
+		{
+			for(int i=0 ; i<allProfessors.size() ; ++i)
+			{
+				if(allProfessors.get(i).getName().equals(name))
+				{
+					return allProfessors.get(i);
+				}
+			}
+			throw new NotFoundException();
+		}
+		
+		public void showProfessor(String name) throws NotFoundException
+		{
+			Professor professor = searchByName(name);
+			String s =professor.toString();
+			System.out.println(s);
+		}
+		
+		public void createNewProfessor(Professor professor)
+		{
+			allProfessors.add(professor);
+			setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/PersonDB.txt");
+		}
+		
+		public void deleteProfessor(Professor professor)
+		{
+			if(!allProfessors.remove(professor))
+				System.out.println("this professor does not exist");
+			setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/PersonDB.txt");
+		}
+		
+		public void editProfessor(String name , Professor newprofessor) throws NotFoundException
+		{
+			Professor prevprofessor = searchByName(name);
+			deleteProfessor(prevprofessor);
+			createNewProfessor(newprofessor);
+		}
+
 }
