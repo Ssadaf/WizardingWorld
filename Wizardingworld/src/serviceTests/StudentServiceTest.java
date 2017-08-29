@@ -11,8 +11,12 @@ import services.*;
 public class StudentServiceTest {
 	public void runTests()
 	{
+		School hogwarts = new School("Hogwarts", true, "England");
+		House house = new House("Slytherin", hogwarts);
 		//helper student
 		Student student = new Student("Harry Potter");
+		Student sadaf = new Student("sadaf" , house ,BloodStatus.Half_blood , hogwarts , "22.06.1998" , new Vector<Course> ());
+		Student changedSadaf = new Student("sadaf" , house ,BloodStatus.Muggle , hogwarts , "22.06.1998" , new Vector<Course> ());
 		
 		//the student service we are testing on it
 		StudentService studentService = new StudentService(student);
@@ -21,6 +25,27 @@ public class StudentServiceTest {
 		System.out.println("GET COURSE  " + testgetStudent(studentService, student));
 		System.out.println("SET COURSE  " + testsetStudent(studentService));
 		System.out.println("SET COURSE  " + testSortToHouse(studentService));
+		
+		StudentService studentService2 = new StudentService();
+		studentService2.getData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/StudentDB.txt");
+		try
+		{
+			System.out.println("####### SHOW ALL STUDENTS TEST:\n");
+			studentService2.showAllStudents();
+			System.out.println("####### SHOW STUDENT Fleur Delacour:\n");
+			studentService2.showStudenet("Fleur Delacour");
+			//check them by commenting line after each one for example for checking create student you should comment the other 2 lines after it
+			studentService2.createNewStudent(sadaf);
+			studentService2.editStudent("sadaf", changedSadaf);
+			studentService2.deleteStudent(changedSadaf);
+			
+			
+		}catch(NotFoundException ex){
+			System.out.println("this student cannot does not exist");
+			
+		}
+		
+		
 	}
 	public boolean testgetStudent(StudentService studentService, Student expected){
 		Student actual = studentService.getStudent();
@@ -63,4 +88,5 @@ public class StudentServiceTest {
 			return true;
 		return false;
 	}
+	
 }

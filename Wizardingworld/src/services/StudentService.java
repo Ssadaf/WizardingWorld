@@ -214,7 +214,7 @@ public class StudentService {
 		
 	}
 	
-	public Student searchByName(String name)
+	public Student searchByName(String name) throws NotFoundException
 	{
 		for(int i=0 ; i<allStudents.size() ; ++i)
 		{
@@ -223,10 +223,10 @@ public class StudentService {
 				return allStudents.get(i);
 			}
 		}
-		return null;
+		throw new NotFoundException();
 	}
 	
-	public void showStudenet(String name)
+	public void showStudenet(String name) throws NotFoundException
 	{
 		Student student = searchByName(name);
 		if(student != null)
@@ -238,103 +238,11 @@ public class StudentService {
 			System.out.println("a student with this name does not exist!");
 	}
 	
-	public void appendStudentToFile( Student s)
-	{
-		FileWriter fw = null;
-		BufferedWriter bw = null;
-		String filename="/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/StudentTest.txt";
-		
-		try {
-		     bw = new BufferedWriter(new FileWriter(filename));
-		    
-		    	
-	    	//write name
-	    	bw.append(s.getName()+"\n");
-	    	
-	    	//write house
-	    	bw.append(s.getHouse().getName()+"\n");
-	    	
-	    	//write blood status
-			BloodStatus bloodStatus = s.getBloodStatus();
-			switch(bloodStatus)
-			{
-				case Muggle:
-				{
-					bw.append("Muggle"+"\n");
-					break;
-				}
-				case Muggle_born:
-				{
-					bw.append("Muggle_born"+"\n");
-					break;
-				}
-				case Half_blood:
-				{
-					bw.append("Half_blood"+"\n");
-					break;
-				}
-				case Pure_blood:
-				{
-					bw.append("Pure_blood"+"\n");
-					break;
-				}
-				case Squib:
-				{
-					bw.append("Squib"+"\n");
-					break;
-				}
-				case Half_breed:
-				{
-					bw.append("Half_breed"+"\n");
-					break;
-				}
-			}
-			
-			//write school
-			bw.append(s.getSchool().getName()+"\n");
-			
-			//write birthday
-			bw.append(s.getBirthday()+"\n");
-			
-			//write courses
-			int numCourses = s.getCourses().size();
-			bw.append(Integer.toString(numCourses)+"\n");
-			
-			for(int x=0; x<numCourses ;x++)
-				bw.append(s.getCourses().get(x).getName()+"\n");
-			
-			//end of course
-			bw.append("*"+"\n");
-		    
-		    
-		} catch (IOException e) {
-
-			e.printStackTrace();
-
-		} finally {
-
-			try {
-
-				if (bw != null)
-					bw.close();
-
-				if (fw != null)
-					fw.close();
-
-			} catch (IOException ex) {
-
-				ex.printStackTrace();
-
-			}
-
-		}
-	}
-
 	
 	public void createNewStudent(Student student)
 	{
 		allStudents.add(student);
-		appendStudentToFile( student);
+		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/StudentTest.txt");
 	}
 	
 	public void deleteStudent(Student student)
@@ -344,7 +252,7 @@ public class StudentService {
 		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/StudentTest.txt");
 	}
 	
-	public void editStudent(String name , Student newstudent)
+	public void editStudent(String name , Student newstudent) throws NotFoundException
 	{
 		Student prevstudent = searchByName(name);
 		if(prevstudent != null)
@@ -354,8 +262,7 @@ public class StudentService {
 			setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/StudentTest.txt");
 		}
 		else
-			System.out.println("a student with this name does not exist!");
-		
+			System.out.println("a student with this name does not exist!");		
 	}
 	
 }
