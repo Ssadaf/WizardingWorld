@@ -43,19 +43,7 @@ public class CourseService {
 				
 				//read mingrade
 				sCurrentLine = br.readLine();
-				Grades minGrade;
-				if(sCurrentLine == "o")
-					minGrade = Grades.O;
-				else if(sCurrentLine == "E")
-					minGrade = Grades.E;
-				else if(sCurrentLine == "A")
-					minGrade =Grades.A;
-				else if(sCurrentLine == "P")
-					minGrade = Grades.P;
-				else if(sCurrentLine == "T")
-					minGrade = Grades.T;
-				else 
-					minGrade = Grades.T;
+				Grades minGrade = Grades.valueOf(sCurrentLine);
 				
 				
 				//read professor
@@ -130,16 +118,34 @@ public class CourseService {
 		    	
 		    	//write mingrade
 				Grades minGrade = course.getMinGrade();
-				if(minGrade == Grades.O)
-					bw.append("O"+"\n");
-				else if(minGrade == Grades.E)
-					bw.append("E"+"\n");
-				else if(minGrade == Grades.A)
-					bw.append("A"+"\n");
-				else if(minGrade == Grades.P)
-					bw.append("P"+"\n");
-				else if(minGrade == Grades.T)
-					bw.append("T"+"\n");
+				switch(minGrade)
+				{
+				case O:
+					{
+						bw.append("O"+"\n");
+						break;
+					}
+				case E:
+					{
+						bw.append("E"+"\n");
+						break;
+					}
+				case A:
+					{
+						bw.append("A"+"\n");
+						break;
+					}
+				case P:
+					{
+						bw.append("P"+"\n");
+						break;
+					}
+				case T:
+					{
+						bw.append("T"+"\n");
+						break;
+					}
+				}
 				
 				//write professor
 				bw.append(course.getProfessor().getName()+"\n");

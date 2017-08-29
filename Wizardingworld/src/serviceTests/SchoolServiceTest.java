@@ -51,14 +51,11 @@ public class SchoolServiceTest {
 			return true;				
 		return false;
 	}
-	public boolean testsortingHat(SchoolService schoolService)
+	public String testsortingHat(SchoolService schoolService)
 	{
 		Student student = new Student("Harry Potter");
 		House actual = schoolService.SortingHat(student);
-		House expected = schoolService.getSchool().getHouses().get(0);///when you are gryfindor
-		if(actual.equals(expected))
-			return true;
-		return false;
+		return actual.getName();
 	}
 
 }

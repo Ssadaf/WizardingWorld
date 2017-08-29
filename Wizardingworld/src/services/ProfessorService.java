@@ -51,20 +51,8 @@ public class ProfessorService {
 					House house=new House(sCurrentLine);
 					
 					//read blood status
-					BloodStatus bloodStatus = BloodStatus.Muggle;
 					sCurrentLine = br.readLine();
-					if(sCurrentLine == "Muggle")
-						bloodStatus = BloodStatus.Muggle;
-					else if(sCurrentLine == "Muggle_born")
-						bloodStatus = BloodStatus.Muggle_born;
-					else if(sCurrentLine == "Half_blood")
-						bloodStatus = BloodStatus.Half_blood;
-					else if(sCurrentLine == "Pure_blood")
-					bloodStatus = BloodStatus.Pure_blood;
-					else if(sCurrentLine == "Squib")
-						bloodStatus = BloodStatus.Squib;
-					else if(sCurrentLine == "Half_breed")
-						bloodStatus = BloodStatus.Half_breed;
+					BloodStatus bloodStatus = BloodStatus.valueOf(sCurrentLine);
 					
 					//read school
 					sCurrentLine = br.readLine();
@@ -145,18 +133,39 @@ public class ProfessorService {
 			    	
 			    	//write blood status
 					BloodStatus bloodStatus = professor.getBloodStatus();
-					if(bloodStatus == BloodStatus.Muggle)
-						bw.append("Muggle"+"\n");
-					else if(bloodStatus == BloodStatus.Muggle_born)
-						bw.append("Muggle_born"+"\n");
-					else if(bloodStatus == BloodStatus.Half_blood)
-						bw.append("Half_blood"+"\n");
-					else if(bloodStatus == BloodStatus.Pure_blood)
-						bw.append("Pure_blood"+"\n");
-					else if(bloodStatus == BloodStatus.Squib)
-						bw.append("Squib"+"\n");
-					else if(bloodStatus == BloodStatus.Half_breed)
-						bw.append("Half_breed"+"\n");
+					switch(bloodStatus)
+					{
+						case Muggle:
+						{
+							bw.append("Muggle"+"\n");
+							break;
+						}
+						case Muggle_born:
+						{
+							bw.append("Muggle_born"+"\n");
+							break;
+						}
+						case Half_blood:
+						{
+							bw.append("Half_blood"+"\n");
+							break;
+						}
+						case Pure_blood:
+						{
+							bw.append("Pure_blood"+"\n");
+							break;
+						}
+						case Squib:
+						{
+							bw.append("Squib"+"\n");
+							break;
+						}
+						case Half_breed:
+						{
+							bw.append("Half_breed"+"\n");
+							break;
+						}
+					}
 			    	
 					//write birthday
 					bw.append(professor.getBirthday()+"\n");

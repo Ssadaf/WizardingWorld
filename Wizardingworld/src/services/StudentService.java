@@ -55,20 +55,8 @@ public class StudentService {
 				House house = new House(sCurrentLine);
 				
 				//read blood status
-				BloodStatus bloodStatus = BloodStatus.Muggle;
 				sCurrentLine = br.readLine();
-				if(sCurrentLine == "Muggle")
-					bloodStatus = BloodStatus.Muggle;
-				else if(sCurrentLine == "Muggle_born")
-					bloodStatus = BloodStatus.Muggle_born;
-				else if(sCurrentLine == "Half_blood")
-					bloodStatus = BloodStatus.Half_blood;
-				else if(sCurrentLine == "Pure_blood")
-				bloodStatus = BloodStatus.Pure_blood;
-				else if(sCurrentLine == "Squib")
-					bloodStatus = BloodStatus.Squib;
-				else if(sCurrentLine == "Half_breed")
-					bloodStatus = BloodStatus.Half_breed;
+				BloodStatus bloodStatus = BloodStatus.valueOf(sCurrentLine);
 				
 				//read school
 				sCurrentLine = br.readLine();
@@ -93,12 +81,6 @@ public class StudentService {
 				student = new Student(name,house,bloodStatus , school , birthDay , courses);
 				allStudents.add(student);
 			}
-			for(int i=0 ; i<allStudents.size() ; ++i)
-			{
-				String s =allStudents.get(i).toString();
-				System.out.println(s);
-			}
-		
 
 		} catch (IOException e) {
 
@@ -146,18 +128,39 @@ public class StudentService {
 		    	
 		    	//write blood status
 				BloodStatus bloodStatus = student.getBloodStatus();
-				if(bloodStatus == BloodStatus.Muggle)
-					bw.append("Muggle"+"\n");
-				else if(bloodStatus == BloodStatus.Muggle_born)
-					bw.append("Muggle_born"+"\n");
-				else if(bloodStatus == BloodStatus.Half_blood)
-					bw.append("Half_blood"+"\n");
-				else if(bloodStatus == BloodStatus.Pure_blood)
-					bw.append("Pure_blood"+"\n");
-				else if(bloodStatus == BloodStatus.Squib)
-					bw.append("Squib"+"\n");
-				else if(bloodStatus == BloodStatus.Half_breed)
-					bw.append("Half_breed"+"\n");
+				switch(bloodStatus)
+				{
+					case Muggle:
+					{
+						bw.append("Muggle"+"\n");
+						break;
+					}
+					case Muggle_born:
+					{
+						bw.append("Muggle_born"+"\n");
+						break;
+					}
+					case Half_blood:
+					{
+						bw.append("Half_blood"+"\n");
+						break;
+					}
+					case Pure_blood:
+					{
+						bw.append("Pure_blood"+"\n");
+						break;
+					}
+					case Squib:
+					{
+						bw.append("Squib"+"\n");
+						break;
+					}
+					case Half_breed:
+					{
+						bw.append("Half_breed"+"\n");
+						break;
+					}
+				}
 				
 				//write school
 				bw.append(student.getSchool().getName()+"\n");
@@ -176,7 +179,7 @@ public class StudentService {
 				bw.append("*"+"\n");
 				
 		    }
-		     
+		    
 		    
 		} catch (IOException e) {
 
@@ -200,4 +203,159 @@ public class StudentService {
 
 		}
 	}
+	
+	public void showAllStudents()
+	{
+		for(int i=0 ; i<allStudents.size() ; ++i)
+		{
+			String s =allStudents.get(i).toString();
+			System.out.println(s);
+		}
+		
+	}
+	
+	public Student searchByName(String name)
+	{
+		for(int i=0 ; i<allStudents.size() ; ++i)
+		{
+			if(allStudents.get(i).getName().equals(name))
+			{
+				return allStudents.get(i);
+			}
+		}
+		return null;
+	}
+	
+	public void showStudenet(String name)
+	{
+		Student student = searchByName(name);
+		if(student != null)
+		{
+			String s =student.toString();
+			System.out.println(s);
+		}
+		else
+			System.out.println("a student with this name does not exist!");
+	}
+	
+	public void appendStudentToFile( Student s)
+	{
+		FileWriter fw = null;
+		BufferedWriter bw = null;
+		String filename="/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/StudentTest.txt";
+		
+		try {
+		     bw = new BufferedWriter(new FileWriter(filename));
+		    
+		    	
+	    	//write name
+	    	bw.append(s.getName()+"\n");
+	    	
+	    	//write house
+	    	bw.append(s.getHouse().getName()+"\n");
+	    	
+	    	//write blood status
+			BloodStatus bloodStatus = s.getBloodStatus();
+			switch(bloodStatus)
+			{
+				case Muggle:
+				{
+					bw.append("Muggle"+"\n");
+					break;
+				}
+				case Muggle_born:
+				{
+					bw.append("Muggle_born"+"\n");
+					break;
+				}
+				case Half_blood:
+				{
+					bw.append("Half_blood"+"\n");
+					break;
+				}
+				case Pure_blood:
+				{
+					bw.append("Pure_blood"+"\n");
+					break;
+				}
+				case Squib:
+				{
+					bw.append("Squib"+"\n");
+					break;
+				}
+				case Half_breed:
+				{
+					bw.append("Half_breed"+"\n");
+					break;
+				}
+			}
+			
+			//write school
+			bw.append(s.getSchool().getName()+"\n");
+			
+			//write birthday
+			bw.append(s.getBirthday()+"\n");
+			
+			//write courses
+			int numCourses = s.getCourses().size();
+			bw.append(Integer.toString(numCourses)+"\n");
+			
+			for(int x=0; x<numCourses ;x++)
+				bw.append(s.getCourses().get(x).getName()+"\n");
+			
+			//end of course
+			bw.append("*"+"\n");
+		    
+		    
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		} finally {
+
+			try {
+
+				if (bw != null)
+					bw.close();
+
+				if (fw != null)
+					fw.close();
+
+			} catch (IOException ex) {
+
+				ex.printStackTrace();
+
+			}
+
+		}
+	}
+
+	
+	public void createNewStudent(Student student)
+	{
+		allStudents.add(student);
+		appendStudentToFile( student);
+	}
+	
+	public void deleteStudent(Student student)
+	{
+		if(!allStudents.remove(student))
+			System.out.println("this student does not exist");
+		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/StudentTest.txt");
+	}
+	
+	public void editStudent(String name , Student newstudent)
+	{
+		Student prevstudent = searchByName(name);
+		if(prevstudent != null)
+		{
+			allStudents.remove(prevstudent);
+			allStudents.add(newstudent);
+			setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/StudentTest.txt");
+		}
+		else
+			System.out.println("a student with this name does not exist!");
+		
+	}
+	
 }
