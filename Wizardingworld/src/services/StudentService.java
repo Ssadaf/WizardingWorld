@@ -229,40 +229,28 @@ public class StudentService {
 	public void showStudenet(String name) throws NotFoundException
 	{
 		Student student = searchByName(name);
-		if(student != null)
-		{
-			String s =student.toString();
-			System.out.println(s);
-		}
-		else
-			System.out.println("a student with this name does not exist!");
+		String s =student.toString();
+		System.out.println(s);
 	}
-	
 	
 	public void createNewStudent(Student student)
 	{
 		allStudents.add(student);
-		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/StudentTest.txt");
+		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/StudentDB.txt.txt");
 	}
 	
 	public void deleteStudent(Student student)
 	{
 		if(!allStudents.remove(student))
 			System.out.println("this student does not exist");
-		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/StudentTest.txt");
+		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/StudentDB.txt");
 	}
 	
 	public void editStudent(String name , Student newstudent) throws NotFoundException
 	{
 		Student prevstudent = searchByName(name);
-		if(prevstudent != null)
-		{
-			allStudents.remove(prevstudent);
-			allStudents.add(newstudent);
-			setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/StudentTest.txt");
-		}
-		else
-			System.out.println("a student with this name does not exist!");		
+		allStudents.remove(prevstudent);
+		allStudents.add(newstudent);
+		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/StudentTest.txt");
 	}
-	
 }

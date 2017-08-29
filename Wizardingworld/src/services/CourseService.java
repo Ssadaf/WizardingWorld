@@ -188,5 +188,55 @@ public class CourseService {
 
 		}
 	}
+	
+	public void showAllCourses()
+	{
+		for(int i=0 ; i<allCourses.size() ; ++i)
+		{
+			String s =allCourses.get(i).toString();
+			System.out.println(s);
+		}
+	}
+	
+	public Course searchByName(String name) throws NotFoundException
+	{
+		for(int i=0 ; i<allCourses.size() ; ++i)
+		{
+			if(allCourses.get(i).getName().equals(name))
+			{
+				return allCourses.get(i);
+			}
+		}
+		throw new NotFoundException();
+	}
+	
+	public void showCourse(String name) throws NotFoundException
+	{
+		Course course = searchByName(name);
+		String s =course.toString();
+		System.out.println(s);
+	}
+	
+	public void createNewStudent(Course course)
+	{
+		allCourses.add(course);
+		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/Coursetest.txt");
+	}
+	
+	public void deleteCourse(Course course)
+	{
+		if(!allCourses.remove(course))
+			System.out.println("this course does not exist");
+		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/Coursetest.txt");
+	}
+	
+	public void editCourse(String name , Course newcourse) throws NotFoundException
+	{
+		Course prevcourse = searchByName(name);
+		allCourses.remove(prevcourse);
+		allCourses.add(newcourse);
+		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/Coursetest.txt");
+	}
+
 
 }
