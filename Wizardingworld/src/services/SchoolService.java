@@ -298,14 +298,14 @@ public class SchoolService {
 	public void createNewSchool(School school)
 	{
 		allSchools.add(school);
-		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/Schooltest.txt");
+		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/SchoolDB.txt");
 	}
 	
 	public void deleteSchool(School school)
 	{
 		if(!allSchools.remove(school))
 			System.out.println("this school does not exist");
-		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/Schooltest.txt");
+		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/SchoolDB.txt");
 	}
 	
 	public void editSchool(String name , School newschool) throws NotFoundException

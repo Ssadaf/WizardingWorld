@@ -65,12 +65,12 @@ public class Main {
 				System.out.println("**************************** STUDENT SERVICE TEST ***************************************");
 				studentServiceTest.runTests();
 				/////////end of student service test
-///******************          	SCHOOL SERVICE TEST **********************************/
-//		//creating an instance of SCHOOL SERVICE test
-//				SchoolServiceTest schoolServiceTest = new SchoolServiceTest();
-//				System.out.println("**************************** SCHOOL SERVICE TEST ***************************************");
-//				//schoolServiceTest.runTests();
-//				
+/******************          	SCHOOL SERVICE TEST **********************************/
+		//creating an instance of SCHOOL SERVICE test
+				SchoolServiceTest schoolServiceTest = new SchoolServiceTest();
+				System.out.println("**************************** SCHOOL SERVICE TEST ***************************************");
+				schoolServiceTest.runTests();
+				
 //				
 //				System.out.println("**************************** SCHOOL SERVICE  ***************************************");
 //				SchoolService schoolService = new SchoolService();
