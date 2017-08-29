@@ -186,5 +186,54 @@ public class PersonService {
 
 		}
 	}
+	
+	public void showAllPersons()
+	{
+		for(int i=0 ; i<allPersons.size() ; ++i)
+		{
+			String s =allPersons.get(i).toString();
+			System.out.println(s);
+		}
+		
+	}
+	
+	public Person searchByName(String name) throws NotFoundException
+	{
+		for(int i=0 ; i<allPersons.size() ; ++i)
+		{
+			if(allPersons.get(i).getName().equals(name))
+			{
+				return allPersons.get(i);
+			}
+		}
+		throw new NotFoundException();
+	}
+	
+	public void showPerson(String name) throws NotFoundException
+	{
+		Person person = searchByName(name);
+		String s =person.toString();
+		System.out.println(s);
+	}
+	
+	public void createNewPerson(Person person)
+	{
+		allPersons.add(person);
+		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/PersonDB.txt");
+	}
+	
+	public void deletePerson(Person person)
+	{
+		if(!allPersons.remove(person))
+			System.out.println("this person does not exist");
+		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/PersonDB.txt");
+	}
+	
+	public void editPerson(String name , Person newperson) throws NotFoundException
+	{
+		Person prevperson = searchByName(name);
+		deletePerson(prevperson);
+		createNewPerson(newperson);
+	}
 
 }
