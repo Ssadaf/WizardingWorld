@@ -149,5 +149,55 @@ public class HouseService {
 
 		}
 	}
+	
+	public void showAllHouses()
+	{
+		for(int i=0 ; i<allHouses.size() ; ++i)
+		{
+			String s =allHouses.get(i).toString();
+			System.out.println(s);
+		}
+		
+	}
+	
+	public House searchByName(String name) throws NotFoundException
+	{
+		for(int i=0 ; i<allHouses.size() ; ++i)
+		{
+			if(allHouses.get(i).getName().equals(name))
+			{
+				return allHouses.get(i);
+			}
+		}
+		throw new NotFoundException();
+	}
+	
+	public void showHouse(String name) throws NotFoundException
+	{
+		House house = searchByName(name);
+		String s =house.toString();
+		System.out.println(s);
+	}
+	
+	public void createNewHouse(House house)
+	{
+		allHouses.add(house);
+		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/PersonDB.txt");
+	}
+	
+	public void deleteHouse(House house)
+	{
+		if(!allHouses.remove(house))
+			System.out.println("this house does not exist");
+		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/PersonDB.txt");
+	}
+	
+	public void editHouse(String name , House newhouse) throws NotFoundException
+	{
+		House prevhouse = searchByName(name);
+		deleteHouse(prevhouse);
+		createNewHouse(newhouse);
+	}
+
 
 }
