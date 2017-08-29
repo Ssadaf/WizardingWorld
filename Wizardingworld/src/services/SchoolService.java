@@ -266,7 +266,54 @@ public class SchoolService {
 		}
 	}
     
-    
+	public void showAllSchools()
+	{
+		for(int i=0 ; i<allSchools.size() ; ++i)
+		{
+			String s =allSchools.get(i).toString();
+			System.out.println(s);
+		}
+		
+	}
+	
+	public School searchByName(String name) throws NotFoundException
+	{
+		for(int i=0 ; i<allSchools.size() ; ++i)
+		{
+			if(allSchools.get(i).getName().equals(name))
+			{
+				return allSchools.get(i);
+			}
+		}
+		throw new NotFoundException();
+	}
+	
+	public void showSchool(String name) throws NotFoundException
+	{
+		School school = searchByName(name);
+		String s =school.toString();
+		System.out.println(s);
+	}
+	
+	public void createNewSchool(School school)
+	{
+		allSchools.add(school);
+		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/Schooltest.txt");
+	}
+	
+	public void deleteSchool(School school)
+	{
+		if(!allSchools.remove(school))
+			System.out.println("this school does not exist");
+		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/Schooltest.txt");
+	}
+	
+	public void editSchool(String name , School newschool) throws NotFoundException
+	{
+		School prevschool = searchByName(name);
+		deleteSchool(prevschool);
+		createNewSchool(newschool);
+	}
     
     
     
