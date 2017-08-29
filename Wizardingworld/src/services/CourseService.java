@@ -217,25 +217,24 @@ public class CourseService {
 		System.out.println(s);
 	}
 	
-	public void createNewStudent(Course course)
+	public void createNewCourse(Course course)
 	{
 		allCourses.add(course);
-		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/Coursetest.txt");
+		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/CourseDB.txt");
 	}
 	
 	public void deleteCourse(Course course)
 	{
 		if(!allCourses.remove(course))
 			System.out.println("this course does not exist");
-		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/Coursetest.txt");
+		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/CourseDB.txt");
 	}
 	
 	public void editCourse(String name , Course newcourse) throws NotFoundException
 	{
 		Course prevcourse = searchByName(name);
-		allCourses.remove(prevcourse);
-		allCourses.add(newcourse);
-		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/Coursetest.txt");
+		deleteCourse(prevcourse);
+		createNewCourse(newcourse);
 	}
 
 

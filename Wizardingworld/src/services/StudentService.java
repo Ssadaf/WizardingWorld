@@ -236,7 +236,7 @@ public class StudentService {
 	public void createNewStudent(Student student)
 	{
 		allStudents.add(student);
-		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/StudentDB.txt.txt");
+		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/StudentDB.txt");
 	}
 	
 	public void deleteStudent(Student student)
@@ -249,8 +249,7 @@ public class StudentService {
 	public void editStudent(String name , Student newstudent) throws NotFoundException
 	{
 		Student prevstudent = searchByName(name);
-		allStudents.remove(prevstudent);
-		allStudents.add(newstudent);
-		setData("/home/sadaf/Documents/summerJava/WizardingWorld/Wizardingworld/sample_DB/StudentTest.txt");
+		deleteStudent(prevstudent);
+		createNewStudent(newstudent);
 	}
 }
